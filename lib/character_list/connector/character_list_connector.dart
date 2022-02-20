@@ -8,7 +8,7 @@ class CharacterListConnector extends Connector {
 
   final String path;
 
-  Future<CharacterListResponse?> getCharacterList() async {
+  Future<CharacterListResponse?>? getCharacterList() async {
     final response = await client.get(
       Uri.parse('$baseUrl$path'),
       params: {
