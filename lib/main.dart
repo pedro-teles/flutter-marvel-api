@@ -31,8 +31,13 @@ class MarvelApp extends StatelessWidget {
               CharacterListUseCaseImpl(repository),
         ),
       ],
-      child: const MaterialApp(
-        home: CharacterListContainer(),
+      child: MaterialApp(
+        title: 'Marvel App',
+        theme: ThemeData(
+          primaryColor: Colors.red[600],
+          fontFamily: 'Roboto',
+        ),
+        home: const CharacterListContainer(),
       ),
     );
   }

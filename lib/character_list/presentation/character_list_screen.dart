@@ -32,7 +32,10 @@ class CharacterListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Marvel App')),
+      appBar: AppBar(
+        title: const Text('Marvel App'),
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
       body: BlocBuilder<CharacterListCubit, CharacterListState>(
           builder: (context, state) {
         switch (state.runtimeType) {
