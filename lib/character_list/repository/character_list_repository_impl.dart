@@ -17,7 +17,7 @@ class CharacterListRepositoryImpl implements CharacterListRepository {
             (character) => Character(
               character.id ?? 0,
               character.name ?? '',
-              '${character.thumbnail?.path}/standard_fantastic${character.thumbnail?.extension ?? ''}',
+              '${character.thumbnail?.path}/standard_fantastic.${character.thumbnail?.extension ?? ''}',
             ),
           )
           .toList();
