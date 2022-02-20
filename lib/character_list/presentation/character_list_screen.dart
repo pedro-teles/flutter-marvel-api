@@ -77,14 +77,20 @@ class _CharacterList extends StatelessWidget {
       itemBuilder: (context, index) {
         final character = characterList[index];
         return Card(
-          margin: const EdgeInsets.all(24.0),
+          margin: const EdgeInsets.all(18.0),
           child: Column(
             children: [
               Image.network(
                 character.thumbnailPath,
               ),
               const SizedBox(height: 16.0),
-              Text(character.name),
+              Text(
+                character.name,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16.0,
+                ),
+              ),
               const SizedBox(height: 16.0),
             ],
           ),
