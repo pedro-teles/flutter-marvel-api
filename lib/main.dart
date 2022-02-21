@@ -37,11 +37,11 @@ class MarvelApp extends StatelessWidget {
 
 List<SingleChildWidget> dataProviders() => [
       Provider(
-        create: (context) => CharacterListConnector(path: 'characters'),
+        create: (context) => CharacterService(path: 'characters'),
       ),
-      ProxyProvider<CharacterListConnector, CharacterListRepository>(
-        update: (context, connector, repository) =>
-            CharacterListRepositoryImpl(connector),
+      ProxyProvider<CharacterService, CharacterListRepository>(
+        update: (context, service, repository) =>
+            CharacterListRepositoryImpl(service),
       ),
     ];
 

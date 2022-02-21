@@ -3,13 +3,13 @@ import 'package:marvel_api/character_list/repository/character_list_repository.d
 import 'package:marvel_api/character_list/usecase/model/character_model.dart';
 
 class CharacterListRepositoryImpl implements CharacterListRepository {
-  CharacterListRepositoryImpl(this.connector);
+  CharacterListRepositoryImpl(this.service);
 
-  final CharacterListConnector connector;
+  final CharacterService service;
 
   @override
   Future<List<Character>> getCharacterList() async {
-    final response = await connector.getCharacterList();
+    final response = await service.getCharacterList();
 
     if (response != null) {
       return response.characterData!.results!

@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:marvel_api/character_list/connector/model/character_list_response.dart';
 import 'package:marvel_api/commons/connector/connector.dart';
 
-class CharacterListConnector extends Connector {
-  CharacterListConnector({required this.path}) : super();
+class CharacterService extends Connector {
+  CharacterService({required this.path}) : super();
 
   final String path;
 
