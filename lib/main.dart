@@ -5,6 +5,7 @@ import 'package:marvel_api/character_list/repository/character_list_repository.d
 import 'package:marvel_api/character_list/usecase/character_list_usecase.dart';
 import 'package:marvel_api/character_list/usecase/character_list_usecase_impl.dart';
 import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
 
 import 'character_list/repository/character_list_repository_impl.dart';
 
@@ -19,17 +20,8 @@ class MarvelApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider(
-          create: (context) => CharacterListConnector(path: 'characters'),
-        ),
-        ProxyProvider<CharacterListConnector, CharacterListRepository>(
-          update: (context, connector, repository) =>
-              CharacterListRepositoryImpl(connector),
-        ),
-        ProxyProvider<CharacterListRepository, CharacterListUseCase>(
-          update: (context, repository, useCase) =>
-              CharacterListUseCaseImpl(repository),
-        ),
+        ...dataProviders(),
+        ...domainProviders(),
       ],
       child: MaterialApp(
         title: 'Marvel App',
@@ -42,3 +34,20 @@ class MarvelApp extends StatelessWidget {
     );
   }
 }
+
+List<SingleChildWidget> dataProviders() => [
+      Provider(
+        create: (context) => CharacterListConnector(path: 'characters'),
+      ),
+      ProxyProvider<CharacterListConnector, CharacterListRepository>(
+        update: (context, connector, repository) =>
+            CharacterListRepositoryImpl(connector),
+      ),
+    ];
+
+List<SingleChildWidget> domainProviders() => [
+      ProxyProvider<CharacterListRepository, CharacterListUseCase>(
+        update: (context, repository, useCase) =>
+            CharacterListUseCaseImpl(repository),
+      ),
+    ];
