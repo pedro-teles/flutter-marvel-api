@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:marvel_api/character_list/connector/character_list_connector.dart';
+import 'package:marvel_api/character_detail/repository/character_detail_repository.dart';
+import 'package:marvel_api/character_detail/repository/character_detail_repository_impl.dart';
+import 'package:marvel_api/commons/connector/character_service.dart';
 import 'package:marvel_api/character_list/presentation/character_list_screen.dart';
 import 'package:marvel_api/character_list/repository/character_list_repository.dart';
 import 'package:marvel_api/character_list/usecase/character_list_usecase.dart';
@@ -42,6 +44,10 @@ List<SingleChildWidget> dataProviders() => [
       ProxyProvider<CharacterService, CharacterListRepository>(
         update: (context, service, repository) =>
             CharacterListRepositoryImpl(service),
+      ),
+      ProxyProvider<CharacterService, CharacterDetaiLRepository>(
+        update: (context, service, repository) =>
+            CharacterDetailRepositoryImpl(service),
       ),
     ];
 

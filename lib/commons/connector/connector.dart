@@ -31,4 +31,9 @@ class Connector {
     interceptors: [ConnectorClientInterceptor()],
     requestTimeout: const Duration(seconds: 10),
   );
+  final Map<String, dynamic> requestParameters = {
+    'apikey': '7aad2c2cad314c843b0d3a2374b49a39',
+    'ts': 1,
+    'hash': '095de9a5a1e8e35ee7d1f6ff41dd17ba'
+  };
 }
