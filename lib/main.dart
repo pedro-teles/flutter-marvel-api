@@ -6,6 +6,8 @@ import 'package:marvel_api/character_list/presentation/character_list_screen.dar
 import 'package:marvel_api/character_list/repository/character_list_repository.dart';
 import 'package:marvel_api/character_list/usecase/character_list_usecase.dart';
 import 'package:marvel_api/character_list/usecase/character_list_usecase_impl.dart';
+import 'package:marvel_api/main_router.dart';
+import 'package:nuvigator/nuvigator.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
@@ -31,7 +33,9 @@ class MarvelApp extends StatelessWidget {
           primaryColor: Colors.red[600],
           fontFamily: 'Roboto',
         ),
-        home: const CharacterListContainer(),
+        home: Nuvigator(
+          router: MainRouter(),
+        ),
       ),
     );
   }

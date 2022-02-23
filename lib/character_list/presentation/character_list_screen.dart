@@ -7,7 +7,10 @@ import 'package:marvel_api/character_list/usecase/model/character_model.dart';
 import 'package:provider/provider.dart';
 
 class CharacterListContainer extends StatelessWidget {
-  const CharacterListContainer({Key? key}) : super(key: key);
+  const CharacterListContainer({Key? key, required this.onCharacterClick})
+      : super(key: key);
+
+  final Function onCharacterClick;
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +24,16 @@ class CharacterListContainer extends StatelessWidget {
 
         return cubit;
       },
-      child: const CharacterListScreen(),
+      child: CharacterListScreen(onCharacterClick),
     );
   }
 }
 
 class CharacterListScreen extends StatelessWidget {
-  const CharacterListScreen({Key? key}) : super(key: key);
+  const CharacterListScreen(this.onCharacterClick, {Key? key})
+      : super(key: key);
+
+  final Function onCharacterClick;
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +50,7 @@ class CharacterListScreen extends StatelessWidget {
           case LoadedList:
             return _CharacterList(
               characterList: (state as LoadedList).characters,
+              onCharacterClick: onCharacterClick,
             );
           case Error:
           default:
@@ -65,10 +72,12 @@ class _LoadingList extends StatelessWidget {
 }
 
 class _CharacterList extends StatelessWidget {
-  const _CharacterList({Key? key, required this.characterList})
+  const _CharacterList(
+      {Key? key, required this.characterList, required this.onCharacterClick})
       : super(key: key);
 
   final List<Character> characterList;
+  final Function onCharacterClick;
 
   @override
   Widget build(BuildContext context) {
@@ -76,26 +85,51 @@ class _CharacterList extends StatelessWidget {
       itemCount: characterList.length,
       itemBuilder: (context, index) {
         final character = characterList[index];
-        return Card(
-          margin: const EdgeInsets.all(18.0),
-          child: Column(
-            children: [
-              Image.network(
-                character.thumbnailPath,
-              ),
-              const SizedBox(height: 16.0),
-              Text(
-                character.name,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16.0,
-                ),
-              ),
-              const SizedBox(height: 16.0),
-            ],
-          ),
+        return _CharacterCard(
+          character: character,
+          onCharacteClick: onCharacterClick,
         );
       },
+    );
+  }
+}
+
+class _CharacterCard extends StatelessWidget {
+  const _CharacterCard(
+      {Key? key, required this.character, required this.onCharacteClick})
+      : super(key: key);
+
+  final Character character;
+  final Function onCharacteClick;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.all(18.0),
+      child: GestureDetector(
+        onTap: () => onCharacteClick(
+          {
+            'characterId': character.id,
+            'characterName': character.name,
+          },
+        ),
+        child: Column(
+          children: [
+            Image.network(
+              character.thumbnailPath,
+            ),
+            const SizedBox(height: 16.0),
+            Text(
+              character.name,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16.0,
+              ),
+            ),
+            const SizedBox(height: 16.0),
+          ],
+        ),
+      ),
     );
   }
 }

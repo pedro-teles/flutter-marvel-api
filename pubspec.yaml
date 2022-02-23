@@ -36,7 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_bloc:
   provider:
-  nuvigator:
+  nuvigator: 1.4.1
   http:
   http_interceptor:
 
