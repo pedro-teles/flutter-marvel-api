@@ -13,9 +13,14 @@ class CharacterDetailRepositoryImpl implements CharacterDetaiLRepository {
     final characterData = detailResponse?.data.results?.first;
 
     return Character(
-      characterId,
-      characterData?.name ?? '',
-      '${characterData?.thumbnail.path}/portrait_uncanny.${characterData?.thumbnail.extension}',
-    );
+        characterId,
+        characterData?.name ?? '',
+        '${characterData?.thumbnail.path}/portrait_uncanny.${characterData?.thumbnail.extension}',
+        characterData?.comics.items
+                ?.map(
+                  (comic) => Comic(comic.resourceURI ?? '', comic.name ?? ''),
+                )
+                .toList() ??
+            List.empty());
   }
 }

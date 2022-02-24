@@ -15,10 +15,10 @@ class CharacterListRepositoryImpl implements CharacterListRepository {
       return response.characterData!.results!
           .map(
             (character) => Character(
-              character.id ?? 0,
-              character.name ?? '',
-              '${character.thumbnail?.path}/landscape_incredible.${character.thumbnail?.extension ?? ''}',
-            ),
+                character.id ?? 0,
+                character.name ?? '',
+                '${character.thumbnail?.path}/landscape_incredible.${character.thumbnail?.extension}',
+                List.empty()),
           )
           .toList();
     }

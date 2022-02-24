@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:marvel_api/character_detail/repository/character_detail_repository.dart';
 import 'package:marvel_api/character_detail/repository/character_detail_repository_impl.dart';
+import 'package:marvel_api/character_detail/usecase/character_detail_usecase.dart';
+import 'package:marvel_api/character_detail/usecase/character_detail_usecase_impl.dart';
 import 'package:marvel_api/commons/connector/character_service.dart';
-import 'package:marvel_api/character_list/presentation/character_list_screen.dart';
 import 'package:marvel_api/character_list/repository/character_list_repository.dart';
 import 'package:marvel_api/character_list/usecase/character_list_usecase.dart';
 import 'package:marvel_api/character_list/usecase/character_list_usecase_impl.dart';
@@ -60,4 +61,8 @@ List<SingleChildWidget> domainProviders() => [
         update: (context, repository, useCase) =>
             CharacterListUseCaseImpl(repository),
       ),
+      ProxyProvider<CharacterDetaiLRepository, CharacterDetailUseCase>(
+        update: (context, repository, useCase) =>
+            CharacterDetailUseCaseImpl(repository),
+      )
     ];

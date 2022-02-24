@@ -5,7 +5,7 @@ import 'package:nuvigator/next.dart';
 class CharacterDetailRoute extends NuRoute {
   @override
   Widget build(BuildContext context, NuRouteSettings<Object> settings) {
-    return CharacterDetailScreen(
+    return ChracterDetailContainer(
       characterId: settings.rawParameters['characterId'],
       characterName: settings.rawParameters['characterName'],
     );

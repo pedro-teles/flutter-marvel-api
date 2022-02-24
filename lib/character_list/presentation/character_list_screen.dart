@@ -4,6 +4,7 @@ import 'package:marvel_api/character_list/bloc/character_list_cubit.dart';
 import 'package:marvel_api/character_list/bloc/state/character_list_state.dart';
 import 'package:marvel_api/character_list/usecase/character_list_usecase.dart';
 import 'package:marvel_api/character_list/usecase/model/character_model.dart';
+import 'package:marvel_api/commons/components/loading_screen.dart';
 import 'package:provider/provider.dart';
 
 class CharacterListContainer extends StatelessWidget {
@@ -46,7 +47,7 @@ class CharacterListScreen extends StatelessWidget {
           builder: (context, state) {
         switch (state.runtimeType) {
           case LoadingList:
-            return _LoadingList();
+            return LoadingScreen();
           case LoadedList:
             return _CharacterList(
               characterList: (state as LoadedList).characters,
@@ -58,16 +59,6 @@ class CharacterListScreen extends StatelessWidget {
         }
       }),
     );
-  }
-}
-
-class _LoadingList extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-        child: CircularProgressIndicator(
-      color: Colors.red,
-    ));
   }
 }
 

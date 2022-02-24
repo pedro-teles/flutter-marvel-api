@@ -66,7 +66,7 @@ class CharacterDetailComicsResponse {
   factory CharacterDetailComicsResponse.fromJson(Map<String, dynamic> json) =>
       CharacterDetailComicsResponse(
         json['available'],
-        json['items'],
+        CharacterDetailsComicsItemResponse.fromJson(json['items']),
       );
 }
 
