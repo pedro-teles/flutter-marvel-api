@@ -1,3 +1,5 @@
+// ignore_for_file: import_of_legacy_library_into_null_safe
+
 import 'package:flutter/material.dart';
 import 'package:marvel_api/character_detail/repository/character_detail_repository.dart';
 import 'package:marvel_api/character_detail/repository/character_detail_repository_impl.dart';

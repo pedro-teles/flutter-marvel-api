@@ -39,9 +39,8 @@ class ChracterDetailContainer extends StatelessWidget {
 }
 
 class CharacterDetailScreen extends StatelessWidget {
-  CharacterDetailScreen({
-    required this.characterName,
-  });
+  const CharacterDetailScreen({required this.characterName, Key? key})
+      : super(key: key);
 
   final String characterName;
 
@@ -56,7 +55,7 @@ class CharacterDetailScreen extends StatelessWidget {
         builder: (_, state) {
           switch (state.runtimeType) {
             case LoadingDetail:
-              return LoadingScreen();
+              return const LoadingScreen();
             case LoadedDetail:
               return _LoadedDetail(
                   character: (state as LoadedDetail).characterDetail);
@@ -71,7 +70,7 @@ class CharacterDetailScreen extends StatelessWidget {
 }
 
 class _LoadedDetail extends StatelessWidget {
-  _LoadedDetail({required this.character});
+  const _LoadedDetail({required this.character});
 
   final Character character;
 
@@ -95,7 +94,7 @@ class _LoadedDetail extends StatelessWidget {
 }
 
 class _CharacterDescription extends StatelessWidget {
-  _CharacterDescription({required this.character});
+  const _CharacterDescription({required this.character});
 
   final Character character;
 
@@ -104,7 +103,7 @@ class _CharacterDescription extends StatelessWidget {
     if (character.description.isNotEmpty) {
       return Column(
         children: [
-          HeadlineText('Description'),
+          const HeadlineText('Description'),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(character.description),
@@ -129,7 +128,7 @@ class _ComicsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        HeadlineText('Comics List'),
+        const HeadlineText('Comics List'),
         ListView.builder(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,

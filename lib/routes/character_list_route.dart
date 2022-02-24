@@ -1,4 +1,6 @@
-import 'package:flutter/src/widgets/framework.dart';
+// ignore_for_file: import_of_legacy_library_into_null_safe
+
+import 'package:flutter/material.dart';
 import 'package:marvel_api/character_list/presentation/character_list_screen.dart';
 import 'package:nuvigator/next.dart';
 

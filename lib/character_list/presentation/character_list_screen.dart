@@ -47,7 +47,7 @@ class CharacterListScreen extends StatelessWidget {
           builder: (context, state) {
         switch (state.runtimeType) {
           case LoadingList:
-            return LoadingScreen();
+            return const LoadingScreen();
           case LoadedList:
             return _CharacterList(
               characterList: (state as LoadedList).characters,
