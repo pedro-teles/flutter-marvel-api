@@ -13,13 +13,12 @@ class CharacterListRepositoryImpl implements CharacterListRepository {
 
     if (response != null) {
       return response.characterData!.results!
-          .map(
-            (character) => Character(
-                character.id ?? 0,
-                character.name ?? '',
-                '${character.thumbnail?.path}/landscape_incredible.${character.thumbnail?.extension}',
-                List.empty()),
-          )
+          .map((character) => Character(
+                id: character.id ?? 0,
+                name: character.name ?? '',
+                thumbnailPath:
+                    '${character.thumbnail?.path}/landscape_incredible.${character.thumbnail?.extension}',
+              ))
           .toList();
     }
 

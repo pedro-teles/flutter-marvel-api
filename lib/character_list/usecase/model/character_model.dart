@@ -1,8 +1,15 @@
 class Character {
-  Character(this.id, this.name, this.thumbnailPath, this.comics);
+  Character({
+    required this.id,
+    required this.name,
+    this.description = '',
+    required this.thumbnailPath,
+    this.comics = const [],
+  });
 
   final int id;
   final String name;
+  final String description;
   final String thumbnailPath;
   final List<Comic> comics;
 }
