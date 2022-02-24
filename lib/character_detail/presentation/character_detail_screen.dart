@@ -1,23 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:marvel_api/character_detail/bloc/character_detail_cubit.dart';
 import 'package:marvel_api/character_detail/bloc/state/character_detail_state.dart';
 import 'package:marvel_api/character_detail/usecase/character_detail_usecase.dart';
 import 'package:marvel_api/character_list/usecase/model/character_model.dart';
 import 'package:marvel_api/commons/components/headline_text.dart';
 import 'package:marvel_api/commons/components/loading_screen.dart';
 import 'package:provider/provider.dart';
-
-class CharacterDetailCubit extends Cubit<CharacterDetailState> {
-  CharacterDetailCubit(this.useCase) : super(LoadingDetail());
-
-  final CharacterDetailUseCase useCase;
-
-  void getCharacterDetail(int characterId) async {
-    final character = await useCase.getCharacterDetail(characterId);
-
-    emit(LoadedDetail(character));
-  }
-}
 
 class ChracterDetailContainer extends StatelessWidget {
   const ChracterDetailContainer({
